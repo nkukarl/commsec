@@ -36,8 +36,9 @@ soup = BeautifulSoup(r.content, 'html.parser')
 VIEWSTATE = soup.find(id = '__VIEWSTATE')['value']
 VIEWSTATEGENERATOR = soup.find(id = '__VIEWSTATEGENERATOR')['value']
 
-username = 'your_username'
-password = 'your_password'
+f = open('commsec_login.txt', 'r')
+[username, password] = f.read().split('\n')
+f.close()
 
 login_data = {
 '__VIEWSTATE': VIEWSTATE,
@@ -94,7 +95,7 @@ while True:
 	size = canvas.get_width_height()
 
 	surf = pygame.image.fromstring(raw_data, size, "RGB")
-	screen.blit(surf, (0,0))
+	screen.blit(surf, (0, 0))
 	pygame.display.flip()
 
 	
